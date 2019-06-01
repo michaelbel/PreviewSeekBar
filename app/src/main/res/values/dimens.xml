@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="preview_width">57dp</dimen>
+    <dimen name="preview_height">31dp</dimen>
+    <dimen name="preview_margin">10dp</dimen>
+</resources>
