@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
 import android.widget.PopupWindow
@@ -29,18 +30,18 @@ class PreviewSeekBar: AppCompatSeekBar, SeekBar.OnSeekBarChangeListener {
         init()
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int): super(context, attrs, defStyle) {
+    constructor(context: Context, attrs: AttributeSet): super(context, attrs) {
         init()
     }
 
-    constructor(context: Context, attrs: AttributeSet): super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int): super(context, attrs, defStyle) {
         init()
     }
 
     private fun init() {
         setOnSeekBarChangeListener(this)
 
-        val parent = LayoutInflater.from(context).inflate(R.layout.preview_seekbar, null)
+        val parent = View.inflate(context, R.layout.preview_seekbar, null)
 
         previewWidth = resources.getDimension(R.dimen.preview_width)
         previewHeight = resources.getDimension(R.dimen.preview_height)
