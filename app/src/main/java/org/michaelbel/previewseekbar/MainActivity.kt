@@ -5,7 +5,7 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.concurrent.TimeUnit
 
-class MainActivity: AppCompatActivity() {
+class MainActivity: AppCompatActivity(R.layout.activity_main) {
 
     companion object {
         /**
@@ -16,7 +16,6 @@ class MainActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         previewSeekBar.max = TIME_MILLS
         previewSeekBar.addOnPreviewTextChangeListener(object: PreviewSeekBar.OnPreviewTextChangeListener {

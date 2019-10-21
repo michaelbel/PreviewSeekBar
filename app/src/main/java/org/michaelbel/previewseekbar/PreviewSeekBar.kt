@@ -2,17 +2,15 @@ package org.michaelbel.previewseekbar
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-import android.widget.FrameLayout
 import android.widget.PopupWindow
 import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
+import kotlin.math.roundToLong
 
-class PreviewSeekBar: AppCompatSeekBar, SeekBar.OnSeekBarChangeListener {
+class PreviewSeekBar(context: Context, attrs: AttributeSet): AppCompatSeekBar(context, attrs), SeekBar.OnSeekBarChangeListener {
 
     interface OnPreviewTextChangeListener {
         fun onPreviewTextChanged(seekBar: PreviewSeekBar, progress: Int): String
@@ -26,19 +24,7 @@ class PreviewSeekBar: AppCompatSeekBar, SeekBar.OnSeekBarChangeListener {
     private var previewPopupText: AppCompatTextView? = null
     private var previewTextChangeListener: OnPreviewTextChangeListener? = null
 
-    constructor(context: Context): super(context) {
-        init()
-    }
-
-    constructor(context: Context, attrs: AttributeSet): super(context, attrs) {
-        init()
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int): super(context, attrs, defStyle) {
-        init()
-    }
-
-    private fun init() {
+    init {
         setOnSeekBarChangeListener(this)
 
         val parent = View.inflate(context, R.layout.preview_seekbar, null)
@@ -88,9 +74,9 @@ class PreviewSeekBar: AppCompatSeekBar, SeekBar.OnSeekBarChangeListener {
     }
 
     private fun getXPosition(seekBar: SeekBar): Int {
-        val width = Math.round(seekBar.width.toDouble()) - seekBar.paddingLeft - seekBar.paddingRight
+        val width = seekBar.width.toDouble().roundToLong() - seekBar.paddingLeft - seekBar.paddingRight
         val seekMax = if (seekBar.max == 0) seekBar.progress else seekBar.max
-        val thumbPos = seekBar.paddingLeft + width * seekBar.progress / seekMax
+        val thumbPos = seekBar.paddingLeft + width * seekBar.progress / if (seekMax == 0) 1 else seekMax
         return thumbPos.toInt() - previewWidth.toInt() / 2
     }
 
