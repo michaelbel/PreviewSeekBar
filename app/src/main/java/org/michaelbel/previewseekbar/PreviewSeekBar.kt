@@ -8,6 +8,7 @@ import android.widget.PopupWindow
 import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
+import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
 class PreviewSeekBar(
@@ -23,6 +24,16 @@ class PreviewSeekBar(
         get() = resources.getDimension(R.dimen.preview_height)
     private val previewMargin: Float
         get() = resources.getDimension(R.dimen.preview_margin)
+
+    private val xPosition: Int
+        get() {
+            val width: Long = width.toDouble().roundToLong() - paddingLeft - paddingRight
+            val seekMax: Int = if (max == 0) progress else max
+            val thumbPos: Long = paddingLeft + width * progress / if (seekMax == 0) 1 else seekMax
+            return thumbPos.toInt() - previewWidth.roundToInt() / 2
+        }
+    private val yPosition: Int
+        get() = -(height + previewHeight.roundToInt() + previewMargin.roundToInt())
 
     private var previewPopup: PopupWindow? = null
     private var previewPopupText: AppCompatTextView? = null
@@ -42,7 +53,7 @@ class PreviewSeekBar(
 
     override fun onStartTrackingTouch(seekBar: SeekBar) {
         if (previewPopup?.isShowing == false) {
-            previewPopup?.showAsDropDown(this, getXPosition(this), getYPosition(this))
+            previewPopup?.showAsDropDown(seekBar, xPosition, yPosition)
         }
     }
 
@@ -56,21 +67,10 @@ class PreviewSeekBar(
         previewPopupText?.text = onPreviewTextChanged(this, getProgress())
         previewPopup?.update(
             seekBar,
-            getXPosition(seekBar),
-            getYPosition(seekBar),
+            xPosition,
+            yPosition,
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
-    }
-
-    private fun getXPosition(seekBar: SeekBar): Int {
-        val width: Long = seekBar.width.toDouble().roundToLong() - seekBar.paddingLeft - seekBar.paddingRight
-        val seekMax: Int = if (seekBar.max == 0) seekBar.progress else seekBar.max
-        val thumbPos: Long = seekBar.paddingLeft + width * seekBar.progress / if (seekMax == 0) 1 else seekMax
-        return thumbPos.toInt() - previewWidth.toInt() / 2
-    }
-
-    private fun getYPosition(seekBar: SeekBar): Int {
-        return -(seekBar.height + previewHeight.toInt() + previewMargin.toInt())
     }
 }
