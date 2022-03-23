@@ -16,7 +16,7 @@ class PreviewSeekBar(
     attrs: AttributeSet
 ): AppCompatSeekBar(context, attrs), SeekBar.OnSeekBarChangeListener {
 
-    var onPreviewTextChanged: (seekBar: PreviewSeekBar, progress: Int) -> String = { _, _ -> "" }
+    var onPreviewTextChanged: (progress: Int) -> String = { "" }
 
     private val previewWidth: Float
         get() = resources.getDimension(R.dimen.preview_width)
@@ -64,7 +64,7 @@ class PreviewSeekBar(
     }
 
     override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
-        previewPopupText?.text = onPreviewTextChanged(this, getProgress())
+        previewPopupText?.text = onPreviewTextChanged(progress)
         previewPopup?.update(
             seekBar,
             xPosition,

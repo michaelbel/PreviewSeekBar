@@ -20,12 +20,12 @@ class MainActivity: AppCompatActivity(R.layout.activity_main) {
         }
     }
 
-    private fun previewTextChanged(seekBar: PreviewSeekBar, progress: Int): String {
-        val duration: Long = seekBar.progress.toLong()
+    private fun previewTextChanged(progress: Int): String {
+        val duration: Long = progress.toLong()
 
         val hours: Long = TimeUnit.MILLISECONDS.toHours(duration)
         val minutes: Long = TimeUnit.MILLISECONDS.toMinutes(duration) -
-                TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(duration))
+                TimeUnit.HOURS.toMinutes(hours)
         val seconds: Long = TimeUnit.MILLISECONDS.toSeconds(duration) -
                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration))
 
@@ -36,6 +36,6 @@ class MainActivity: AppCompatActivity(R.layout.activity_main) {
         /**
          * 01:23:45
          */
-        private const val TIME_MILLS = 5025000
+        private const val TIME_MILLS: Int = 5025000
     }
 }
