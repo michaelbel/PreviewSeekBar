@@ -2,7 +2,6 @@ package org.michaelbel.previewseekbar
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import java.util.concurrent.TimeUnit
 import org.michaelbel.previewseekbar.databinding.ActivityMainBinding
 
