@@ -7,7 +7,7 @@
     android:background="@drawable/preview">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text"
+        android:id="@+id/previewText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
