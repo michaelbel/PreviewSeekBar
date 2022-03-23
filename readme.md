@@ -1,4 +1,4 @@
-# PreviewSeekBar
+## PreviewSeekBar
 
 Show preview of custom text.
 
