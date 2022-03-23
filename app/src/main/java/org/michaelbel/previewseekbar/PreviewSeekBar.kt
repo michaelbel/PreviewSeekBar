@@ -46,8 +46,9 @@ class PreviewSeekBar(
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,
             false
-        )
-        previewPopup?.animationStyle = R.style.SeekBarPreviewAnimation
+        ).also { popupWindow: PopupWindow ->
+            popupWindow.animationStyle = R.style.SeekBarPreviewAnimation
+        }
         setOnSeekBarChangeListener(this)
     }
 
