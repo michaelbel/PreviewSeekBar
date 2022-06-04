@@ -3,11 +3,13 @@ package org.michaelbel.previewseekbar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import java.util.concurrent.TimeUnit
+import kotlin.properties.Delegates
+import kotlin.properties.Delegates.notNull
 import org.michaelbel.previewseekbar.databinding.ActivityMainBinding
 
 class MainActivity: AppCompatActivity(R.layout.activity_main) {
 
-    private lateinit var binding: ActivityMainBinding
+    private var binding: ActivityMainBinding by notNull()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

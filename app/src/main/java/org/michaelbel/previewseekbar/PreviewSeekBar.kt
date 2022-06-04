@@ -10,6 +10,8 @@ import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
+import kotlin.properties.Delegates
+import kotlin.properties.Delegates.notNull
 
 class PreviewSeekBar(
     context: Context,
@@ -35,8 +37,8 @@ class PreviewSeekBar(
     private val yPosition: Int
         get() = -(height + previewHeight.roundToInt() + previewMargin.roundToInt())
 
-    private var previewPopup: PopupWindow? = null
-    private var previewPopupText: AppCompatTextView? = null
+    private var previewPopup: PopupWindow by notNull()
+    private var previewPopupText: AppCompatTextView by notNull()
 
     init {
         val contentView: View = View.inflate(context, R.layout.preview_seekbar, null)
@@ -53,20 +55,20 @@ class PreviewSeekBar(
     }
 
     override fun onStartTrackingTouch(seekBar: SeekBar) {
-        if (previewPopup?.isShowing == false) {
-            previewPopup?.showAsDropDown(seekBar, xPosition, yPosition)
+        if (!previewPopup.isShowing) {
+            previewPopup.showAsDropDown(seekBar, xPosition, yPosition)
         }
     }
 
     override fun onStopTrackingTouch(seekBar: SeekBar) {
-        if (previewPopup?.isShowing == true) {
-            previewPopup?.dismiss()
+        if (previewPopup.isShowing) {
+            previewPopup.dismiss()
         }
     }
 
     override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
-        previewPopupText?.text = onPreviewTextChanged(progress)
-        previewPopup?.update(
+        previewPopupText.text = onPreviewTextChanged(progress)
+        previewPopup.update(
             seekBar,
             xPosition,
             yPosition,
