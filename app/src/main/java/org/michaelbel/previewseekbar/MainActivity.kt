@@ -1,17 +1,18 @@
 package org.michaelbel.previewseekbar
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import java.util.concurrent.TimeUnit
-import kotlin.properties.Delegates
 import kotlin.properties.Delegates.notNull
 import org.michaelbel.previewseekbar.databinding.ActivityMainBinding
 
-class MainActivity: AppCompatActivity(R.layout.activity_main) {
+class MainActivity: ComponentActivity(R.layout.activity_main) {
 
     private var binding: ActivityMainBinding by notNull()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -23,14 +24,10 @@ class MainActivity: AppCompatActivity(R.layout.activity_main) {
     }
 
     private fun previewTextChanged(progress: Int): String {
-        val duration: Long = progress.toLong()
-
-        val hours: Long = TimeUnit.MILLISECONDS.toHours(duration)
-        val minutes: Long = TimeUnit.MILLISECONDS.toMinutes(duration) -
-                TimeUnit.HOURS.toMinutes(hours)
-        val seconds: Long = TimeUnit.MILLISECONDS.toSeconds(duration) -
-                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration))
-
+        val duration = progress.toLong()
+        val hours = TimeUnit.MILLISECONDS.toHours(duration)
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(duration) - TimeUnit.HOURS.toMinutes(hours)
+        val seconds = TimeUnit.MILLISECONDS.toSeconds(duration) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration))
         return String.format("%02d:%02d:%02d", hours, minutes, seconds)
     }
 
@@ -38,6 +35,6 @@ class MainActivity: AppCompatActivity(R.layout.activity_main) {
         /**
          * 01:23:45
          */
-        private const val TIME_MILLS: Int = 5025000
+        private const val TIME_MILLS = 5025000
     }
 }

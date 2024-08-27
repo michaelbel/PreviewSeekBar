@@ -10,7 +10,6 @@ import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.appcompat.widget.AppCompatTextView
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
-import kotlin.properties.Delegates
 import kotlin.properties.Delegates.notNull
 
 class PreviewSeekBar(
