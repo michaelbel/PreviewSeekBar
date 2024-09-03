@@ -2,4 +2,4 @@
 
 Show preview of custom text.
 
-<img src="config/app_screenshot.png" width="40%">
+<img src=".github/screen.png" width="40%">
