@@ -6,6 +6,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import java.util.concurrent.TimeUnit
 import kotlin.properties.Delegates.notNull
 import org.michaelbel.previewseekbar.databinding.ActivityMainBinding
+import java.util.Locale
 
 class MainActivity: ComponentActivity(R.layout.activity_main) {
 
@@ -28,7 +29,7 @@ class MainActivity: ComponentActivity(R.layout.activity_main) {
         val hours = TimeUnit.MILLISECONDS.toHours(duration)
         val minutes = TimeUnit.MILLISECONDS.toMinutes(duration) - TimeUnit.HOURS.toMinutes(hours)
         val seconds = TimeUnit.MILLISECONDS.toSeconds(duration) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration))
-        return String.format("%02d:%02d:%02d", hours, minutes, seconds)
+        return String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds)
     }
 
     private companion object {

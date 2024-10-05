@@ -28,9 +28,9 @@ class PreviewSeekBar(
 
     private val xPosition: Int
         get() {
-            val width: Long = width.toDouble().roundToLong() - paddingLeft - paddingRight
-            val seekMax: Int = if (max == 0) progress else max
-            val thumbPos: Long = paddingLeft + width * progress / if (seekMax == 0) 1 else seekMax
+            val width = width.toDouble().roundToLong() - paddingLeft - paddingRight
+            val seekMax = if (max == 0) progress else max
+            val thumbPos = paddingLeft + width * progress / if (seekMax == 0) 1 else seekMax
             return thumbPos.toInt() - previewWidth.roundToInt() / 2
         }
     private val yPosition: Int
@@ -40,14 +40,14 @@ class PreviewSeekBar(
     private var previewPopupText: AppCompatTextView by notNull()
 
     init {
-        val contentView: View = View.inflate(context, R.layout.preview_seekbar, null)
+        val contentView = View.inflate(context, R.layout.preview_seekbar, null)
         previewPopupText = contentView.findViewById(R.id.previewText)
         previewPopup = PopupWindow(
             contentView,
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,
             false
-        ).also { popupWindow: PopupWindow ->
+        ).also { popupWindow ->
             popupWindow.animationStyle = R.style.SeekBarPreviewAnimation
         }
         setOnSeekBarChangeListener(this)
