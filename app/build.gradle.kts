@@ -43,3 +43,15 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.google.material)
 }
+
+tasks.register("printVersionName") {
+    doLast {
+        println(android.defaultConfig.versionName)
+    }
+}
+
+tasks.register("printVersionCode") {
+    doLast {
+        println(android.defaultConfig.versionCode.toString())
+    }
+}
