@@ -1,6 +1,18 @@
+import org.apache.commons.io.output.ByteArrayOutputStream
+import java.nio.charset.Charset
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+}
+
+private val gitCommitsCount: Int by lazy {
+    val stdout = ByteArrayOutputStream()
+    exec {
+        commandLine("git", "rev-list", "--count", "HEAD")
+        standardOutput = stdout
+    }
+    stdout.toString(Charset.defaultCharset()).trim().toInt()
 }
 
 kotlin {
@@ -17,8 +29,8 @@ android {
         applicationId = "org.michaelbel.previewseekbar"
         minSdk = libs.versions.min.sdk.get().toInt()
         targetSdk = libs.versions.target.sdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
+        versionCode = gitCommitsCount
         setProperty("archivesBaseName", "PreviewSeekBar-v$versionName($versionCode)")
     }
 
