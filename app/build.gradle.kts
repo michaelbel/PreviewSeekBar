@@ -31,7 +31,6 @@ android {
         targetSdk = libs.versions.target.sdk.get().toInt()
         versionName = "1.0.0"
         versionCode = gitCommitsCount
-        setProperty("archivesBaseName", "PreviewSeekBar-v$versionName($versionCode)")
     }
 
     buildFeatures {
@@ -42,6 +41,10 @@ android {
 dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.google.material)
+}
+
+base {
+    archivesName.set("PreviewSeekBar-v${android.defaultConfig.versionName}(${android.defaultConfig.versionCode})")
 }
 
 tasks.register("printVersionName") {

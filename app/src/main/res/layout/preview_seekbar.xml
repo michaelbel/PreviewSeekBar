@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<FrameLayout
+<androidx.appcompat.widget.AppCompatTextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/previewText"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/preview">
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/previewText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="3dp"
-        android:textSize="13sp"
-        android:textColor="@android:color/white"
-        tools:text="01:23:45"/>
-
-</FrameLayout>
+    android:paddingBottom="3dp"
+    android:gravity="center"
+    android:textSize="13sp"
+    android:textColor="@android:color/white"
+    android:background="@drawable/preview"
+    tools:text="01:23:45" />

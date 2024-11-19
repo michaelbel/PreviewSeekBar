@@ -4,6 +4,6 @@
 
     <item
         android:gravity="center"
-        android:drawable="@drawable/ic_splashscreen_branding"/>
+        android:drawable="@drawable/ic_splashscreen_branding" />
 
 </layer-list>

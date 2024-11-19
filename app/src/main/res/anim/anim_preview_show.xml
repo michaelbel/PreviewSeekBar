@@ -6,5 +6,5 @@
 		android:fromAlpha="0"
 		android:toAlpha="1"
 		android:duration="0"
-		android:repeatCount="0"/>
+		android:repeatCount="0" />
 </set>

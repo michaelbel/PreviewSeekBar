@@ -10,6 +10,6 @@
       android:strokeAlpha="0.8"
       android:fillColor="#000"
       android:fillType="evenOdd"
-      android:fillAlpha="0.8"/>
+      android:fillAlpha="0.8" />
 
 </vector>
