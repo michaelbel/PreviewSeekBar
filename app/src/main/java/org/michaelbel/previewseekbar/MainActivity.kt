@@ -17,7 +17,6 @@ class MainActivity: ComponentActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.previewSeekBar.run {
             max = TIME_MILLS
             onPreviewTextChanged = ::previewTextChanged
