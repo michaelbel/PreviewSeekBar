@@ -35,6 +35,6 @@ class MainActivity: ComponentActivity(R.layout.activity_main) {
         /**
          * 01:23:45
          */
-        private const val TIME_MILLS = 5025000
+        private const val TIME_MILLS = 5_025_000
     }
 }

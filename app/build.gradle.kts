@@ -38,13 +38,13 @@ android {
     }
 }
 
+base {
+    archivesName.set("PreviewSeekBar-v${android.defaultConfig.versionName}(${android.defaultConfig.versionCode})")
+}
+
 dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.google.material)
-}
-
-base {
-    archivesName.set("PreviewSeekBar-v${android.defaultConfig.versionName}(${android.defaultConfig.versionCode})")
 }
 
 tasks.register("printVersionName") {
