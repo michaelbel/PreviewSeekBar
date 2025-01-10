@@ -6,4 +6,4 @@ PreviewSeekBar
 
 Show preview of custom text.
 
-<img src=".github/screen.png" alt="Project Image" width="33%">
+<img src=".github/pics/app.gif" alt="App Video" width="33%">
