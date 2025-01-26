@@ -8,6 +8,6 @@
     android:paddingBottom="3dp"
     android:gravity="center"
     android:textSize="13sp"
-    android:textColor="@android:color/white"
+    android:textColor="@color/PreviewText"
     android:background="@drawable/preview"
     tools:text="01:23:45" />

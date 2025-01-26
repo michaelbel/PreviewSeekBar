@@ -46,7 +46,7 @@ class PreviewSeekBar(
             contentView,
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,
-            false
+            /* focusable */ false
         ).also { popupWindow ->
             popupWindow.animationStyle = R.style.SeekBarPreviewAnimation
         }
