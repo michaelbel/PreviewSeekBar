@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   job-common:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       SHORT_SHA: ${{ steps.expose_sha.outputs.short_sha }}
     steps:
@@ -28,7 +28,7 @@ jobs:
 
   build-android:
     needs: job-common
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     env:
       SHORT_SHA: ${{ needs.job-common.outputs.SHORT_SHA }}

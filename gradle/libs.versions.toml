@@ -4,7 +4,7 @@ compile-sdk = "35"
 target-sdk = "35"
 jdk = "21"
 agp = "8.8.0"
-kotlin = "2.1.0"
+kotlin = "2.1.10"
 google-material = "1.12.0"
 androidx-core-splashscreen = "1.0.1"
 
