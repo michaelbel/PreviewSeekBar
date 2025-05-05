@@ -19,12 +19,9 @@ class PreviewSeekBar(
 
     var onPreviewTextChanged: (progress: Int) -> String = { "" }
 
-    private val previewWidth: Float
-        get() = resources.getDimension(R.dimen.preview_width)
-    private val previewHeight: Float
-        get() = resources.getDimension(R.dimen.preview_height)
-    private val previewMargin: Float
-        get() = resources.getDimension(R.dimen.preview_margin)
+    private val previewWidth: Float by lazy { resources.getDimension(R.dimen.preview_width) }
+    private val previewHeight: Float by lazy { resources.getDimension(R.dimen.preview_height) }
+    private val previewMargin: Float by lazy { resources.getDimension(R.dimen.preview_margin) }
 
     private val xPosition: Int
         get() {
@@ -46,23 +43,21 @@ class PreviewSeekBar(
             contentView,
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,
-            /* focusable */ false
-        ).also { popupWindow ->
-            popupWindow.animationStyle = R.style.SeekBarPreviewAnimation
+            false
+        ).apply {
+            animationStyle = R.style.SeekBarPreviewAnimation
         }
         setOnSeekBarChangeListener(this)
     }
 
     override fun onStartTrackingTouch(seekBar: SeekBar) {
-        if (!previewPopup.isShowing) {
-            previewPopup.showAsDropDown(seekBar, xPosition, yPosition)
-        }
+        if (previewPopup.isShowing) return
+        previewPopup.showAsDropDown(seekBar, xPosition, yPosition)
     }
 
     override fun onStopTrackingTouch(seekBar: SeekBar) {
-        if (previewPopup.isShowing) {
-            previewPopup.dismiss()
-        }
+        if (!previewPopup.isShowing) return
+        previewPopup.dismiss()
     }
 
     override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
