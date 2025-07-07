@@ -10,12 +10,12 @@ private val gitCommitsCount: Int by lazy {
         val isWindows = System.getProperty("os.name").contains("Windows", ignoreCase = true)
         val processBuilder = when {
             isWindows -> ProcessBuilder("cmd", "/c", "git", "rev-list", "--count", "HEAD")
-            else -> ProcessBuilder("git", "rev-list", "--count", "HEAD") // Unix
+            else -> ProcessBuilder("git", "rev-list", "--count", "HEAD")
         }
         processBuilder.redirectErrorStream(true)
         processBuilder.start().inputStream.bufferedReader(StandardCharsets.UTF_8).readLine().trim().toInt()
     } catch (_: Exception) {
-        1 // Git недоступен
+        1
     }
 }
 
