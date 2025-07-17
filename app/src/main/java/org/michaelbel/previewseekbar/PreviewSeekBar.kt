@@ -2,7 +2,6 @@ package org.michaelbel.previewseekbar
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupWindow
 import android.widget.SeekBar
@@ -37,7 +36,7 @@ class PreviewSeekBar(
     private var previewPopupText: AppCompatTextView by notNull()
 
     init {
-        val contentView = View.inflate(context, R.layout.preview_seekbar, null)
+        val contentView = inflate(context, R.layout.preview_seekbar, null)
         previewPopupText = contentView.findViewById(R.id.previewText)
         previewPopup = PopupWindow(
             contentView,
