@@ -39,7 +39,7 @@ android {
 
     signingConfigs {
         getByName("debug") {
-            keyAlias = "aliases"
+            keyAlias = "previewseekbar"
             keyPassword = "password"
             storeFile = rootProject.file("config/debug-key.jks")
             storePassword = "password"
