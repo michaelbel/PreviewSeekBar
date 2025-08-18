@@ -1,4 +1,4 @@
-name: CI
+name: ci
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 concurrency:
   group: environment-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   job-common:
@@ -73,17 +73,9 @@ jobs:
           path: |
             app/build/outputs/apk
 
-      - name: expose version name
-        id: version_name
-        run: |
-          VERSION_NAME=$(./gradlew printVersionName -q)
-          echo "VERSION_NAME=$VERSION_NAME" >> $GITHUB_ENV
-
-      - name: expose version code
-        id: version_code
-        run: |
-          VERSION_CODE=$(./gradlew printVersionCode -q)
-          echo "VERSION_CODE=$VERSION_CODE" >> $GITHUB_ENV
+      - name: expose version
+        id: version
+        run: ./gradlew -q printVersion | tee -a $GITHUB_ENV | tee -a $GITHUB_OUTPUT
 
       - name: expose apk path
         run: |
@@ -96,8 +88,8 @@ jobs:
           THREAD_ID: ${{ secrets.TELEGRAM_THREAD_ID }}
           MESSAGE: |
             ✅ <b>${{ env.VERSION_NAME }} (${{ env.VERSION_CODE }})</b>
-            <b>Ветка:</b> ${{ github.ref_name }}
-            <b>Коммит:</b> <code>${{ env.SHORT_SHA }}</code>
+            <b>Branch:</b> <code>${{ github.ref_name }}</code>
+            <b>Commit:</b> <code>${{ env.SHORT_SHA }}</code>
         run: |
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendDocument" \
             -F chat_id="${CHAT_ID}" \
