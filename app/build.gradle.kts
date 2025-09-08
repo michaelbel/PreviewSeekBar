@@ -41,7 +41,7 @@ android {
         getByName("debug") {
             keyAlias = "previewseekbar"
             keyPassword = "password"
-            storeFile = rootProject.file("config/debug-key.jks")
+            storeFile = rootProject.file(".github/debug-key.jks")
             storePassword = "password"
         }
     }

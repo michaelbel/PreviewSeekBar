@@ -32,9 +32,6 @@ class MainActivity: ComponentActivity(R.layout.activity_main) {
     }
 
     private companion object {
-        /**
-         * 01:23:45
-         */
-        private const val TIME_MILLS = 5_025_000
+        private const val TIME_MILLS = 5_025_000 // 01:23:45
     }
 }
