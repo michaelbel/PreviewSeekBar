@@ -6,4 +6,4 @@ PreviewSeekBar
 
 PreviewSeekBar is a custom Android SeekBar that displays a preview popup above the thumb during user interaction. It’s perfect for media players, video or audio applications, and other interfaces where visual feedback enhances the user experience.
 
-<img src=".github/pics/app.gif" alt="App Video" width="33%">
+<img src=".github/app.gif" alt="App Video" width="33%">
