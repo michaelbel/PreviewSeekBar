@@ -6,7 +6,7 @@ jdk = "21"
 agp = "8.13.0"
 kotlin = "2.2.21"
 google-material = "1.13.0"
-androidx-core-splashscreen = "1.0.1"
+androidx-core-splashscreen = "1.2.0"
 
 [libraries]
 google-material = { module = "com.google.android.material:material", version.ref = "google-material" }
