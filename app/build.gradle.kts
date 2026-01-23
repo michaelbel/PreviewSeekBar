@@ -2,7 +2,6 @@ import java.nio.charset.StandardCharsets
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
 }
 
 private val gitCommitsCount: Int by lazy {
