@@ -8,7 +8,7 @@ import kotlin.properties.Delegates.notNull
 import org.michaelbel.previewseekbar.databinding.ActivityMainBinding
 import java.util.Locale
 
-class MainActivity: ComponentActivity(R.layout.activity_main) {
+class MainActivity: ComponentActivity() {
 
     private var binding: ActivityMainBinding by notNull()
 

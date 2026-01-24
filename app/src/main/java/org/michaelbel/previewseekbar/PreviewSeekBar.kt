@@ -24,10 +24,14 @@ class PreviewSeekBar(
 
     private val xPosition: Int
         get() {
-            val width = width.toDouble().roundToLong() - paddingLeft - paddingRight
-            val seekMax = if (max == 0) progress else max
-            val thumbPos = paddingLeft + width * progress / if (seekMax == 0) 1 else seekMax
-            return thumbPos.toInt() - previewWidth.roundToInt() / 2
+            val trackWidth = width.toDouble().roundToLong() - paddingLeft - paddingRight
+            val range = (max - min).coerceAtLeast(1)
+            val clampedProgress = (progress - min).coerceIn(0, range)
+            val thumbPos = paddingLeft + trackWidth * clampedProgress / range
+            val leftAligned = thumbPos.toInt() - previewWidth.roundToInt() / 2
+            val rawX = if (layoutDirection == LAYOUT_DIRECTION_RTL) width - leftAligned - previewWidth.roundToInt() else leftAligned
+            val maxX = (width - previewWidth.roundToInt()).coerceAtLeast(0)
+            return rawX.coerceIn(0, maxX)
         }
     private val yPosition: Int
         get() = -(height + previewHeight.roundToInt() + previewMargin.roundToInt())
@@ -68,5 +72,12 @@ class PreviewSeekBar(
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
+    }
+
+    override fun onDetachedFromWindow() {
+        if (previewPopup.isShowing) {
+            previewPopup.dismiss()
+        }
+        super.onDetachedFromWindow()
     }
 }
